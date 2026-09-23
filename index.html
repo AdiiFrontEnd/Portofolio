@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Adii — Portfolio</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400..800&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+<style>
+:root{
+  --cream:#FBF7EC; --ink:#1B2430; --blue:#2C6FB3; --blue-deep:#1F5089;
+  --card:#FFFFFF; --border:rgba(27,36,48,.12); --muted:#5C6B7A;
+  --red:#FF5F57; --yellow:#FEBC2E; --green:#28C840;
+  box-sizing:border-box;
+  padding-top:env(safe-area-inset-top,0px); padding-bottom:env(safe-area-inset-bottom,0px);
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){ --cream:#14181F; --ink:#F2EFE7; --card:#1D232D; --border:rgba(242,239,231,.14); --muted:#9AA6B2; }
+}
+:root[data-theme="dark"]{ --cream:#14181F; --ink:#F2EFE7; --card:#1D232D; --border:rgba(242,239,231,.14); --muted:#9AA6B2; }
+html{scroll-padding-top:env(safe-area-inset-top,0px); scroll-behavior:smooth;}
+*{margin:0;box-sizing:border-box;}
+body{background:var(--cream); color:var(--ink); font-family:'Plus Jakarta Sans',sans-serif; overflow-x:hidden;}
+h1,h2,h3{font-family:'Bricolage Grotesque',sans-serif; letter-spacing:-.02em;}
+section{padding:clamp(48px,8vw,96px) clamp(20px,6vw,64px); max-width:1180px; margin:0 auto;}
+.eyebrow{font-size:.8rem; font-weight:700; text-transform:uppercase; letter-spacing:.12em; color:var(--blue);}
+
+/* menu bar */
+.menubar{position:sticky; top:0; z-index:50; display:flex; align-items:center; gap:18px; height:34px; padding:0 16px; padding-top:env(safe-area-inset-top,0px); background:var(--card); border-bottom:1px solid var(--border); font-size:.78rem; font-weight:600; color:var(--muted);}
+.menubar span:first-child{color:var(--ink); font-weight:700;}
+.menubar .fill{flex:1;}
+
+/* mac window card */
+.mac-card{background:var(--card); border:1px solid var(--border); border-radius:16px; box-shadow:0 18px 40px rgba(27,36,48,.10); overflow:hidden;}
+.mac-card .bar{display:flex; gap:6px; padding:10px 12px; border-bottom:1px solid var(--border);}
+.mac-card .dot{width:9px; height:9px; border-radius:50%;}
+.dot.r{background:var(--red);} .dot.y{background:var(--yellow);} .dot.g{background:var(--green);}
+
+/* HERO */
+.hero{position:relative; padding-top:clamp(40px,7vw,80px); min-height:78vh; display:flex; flex-direction:column; justify-content:center;}
+.hero h1{font-size:clamp(2.6rem,9vw,6rem); font-weight:800; line-height:.96;}
+.hero h1 .hl{background:var(--blue); color:#fff; padding:0 .12em; border-radius:.08em; display:inline-block;}
+.hero p.lede{margin-top:22px; max-width:520px; font-size:1.05rem; color:var(--muted); line-height:1.6;}
+.roles{display:flex; flex-wrap:wrap; gap:10px; margin-top:28px;}
+.cta-row{display:flex; flex-wrap:wrap; gap:14px; margin-top:30px;}
+.btn-primary,.btn-secondary{padding:13px 26px; border-radius:999px; font-weight:600; font-size:.92rem; text-decoration:none; white-space:nowrap; transition:transform .15s ease;}
+.btn-primary{background:var(--blue); color:#fff;}
+.btn-secondary{border:1px solid var(--border); color:var(--ink); background:var(--card);}
+.btn-primary:active,.btn-secondary:active{transform:scale(.98);}
+.pill{border:1px solid var(--border); background:var(--card); padding:8px 16px; border-radius:999px; font-size:.85rem; font-weight:600;}
+.float{position:absolute; z-index:1;}
+.f1{top:2%; right:2%; width:190px; transform:rotate(4deg);}
+.f2{top:32%; right:16%; width:150px; transform:rotate(-3deg);}
+.f3{bottom:6%; right:6%; width:170px; transform:rotate(2deg);}
+.float .body{padding:12px 14px; font-size:.72rem; color:var(--muted);}
+.float .body b{display:block; color:var(--ink); font-size:.78rem; margin-bottom:3px;}
+@media (max-width: 900px){ .float{display:none;} }
+
+/* SKILLS — zig-zag rows (avoids 3-equal-card pattern) */
+.skill-rows{display:flex; flex-direction:column; gap:16px; margin-top:26px;}
+.skill-row .row-body{display:flex; align-items:center; gap:28px; padding:24px 28px;}
+.skill-row.rev .row-body{flex-direction:row-reverse;}
+.row-icon{flex:0 0 auto; width:60px; height:60px; border-radius:16px; background:var(--cream); color:var(--blue); font-size:1.5rem; display:flex; align-items:center; justify-content:center;}
+.row-content{flex:1; min-width:0;}
+.row-content h3{font-size:1.05rem; margin-bottom:10px;}
+.row-content ul{list-style:none; display:flex; flex-wrap:wrap; gap:8px; padding:0;}
+.row-content li{border:1px solid var(--border); padding:6px 14px; border-radius:999px; font-size:.82rem; color:var(--muted);}
+@media (max-width:640px){ .skill-row .row-body,.skill-row.rev .row-body{flex-direction:column; align-items:flex-start; gap:14px; padding:20px;} }
+
+/* ALBUM — bento */
+.album-wrap{margin-top:26px; overflow:hidden;}
+.album-main{padding:18px;}
+.bento{display:grid; grid-template-columns:repeat(4,1fr); grid-auto-rows:130px; gap:10px;}
+.bento figure{margin:0; position:relative; border-radius:12px; overflow:hidden; grid-column:span 1; grid-row:span 1;}
+.bento figure img{width:100%; height:100%; object-fit:cover; display:block;}
+.bento figure figcaption{position:absolute; left:0; right:0; bottom:0; padding:8px 10px; font-size:.68rem; color:#fff; background:linear-gradient(0deg,rgba(0,0,0,.55),transparent); opacity:0; transition:opacity .25s;}
+.bento figure:hover figcaption{opacity:1;}
+.bento .b-wide{grid-column:span 2;}
+.bento .b-tall{grid-row:span 2;}
+.bento .b-big{grid-column:span 2; grid-row:span 2;}
+.bento .b-stat{display:flex; flex-direction:column; justify-content:center; gap:6px; background:var(--blue); color:#fff; padding:16px; border-radius:12px;}
+.bento .b-stat i{font-size:1.3rem;}
+.bento .b-stat b{font-size:1.6rem; font-family:'Bricolage Grotesque',sans-serif;}
+.bento .b-stat span{font-size:.72rem; opacity:.85;}
+@media (max-width:760px){ .bento{grid-template-columns:repeat(2,1fr); grid-auto-rows:130px;} .bento .b-big{grid-column:span 2;} }
+
+/* reveal */
+.reveal{opacity:0; transform:translateY(24px); transition:opacity .6s ease, transform .6s ease;}
+.reveal.in{opacity:1; transform:none;}
+@media (prefers-reduced-motion: reduce){ .reveal{opacity:1; transform:none; transition:none;} }
+
+/* FOOTER */
+footer{background:var(--blue-deep); color:#fff; padding:clamp(48px,8vw,80px) clamp(20px,6vw,64px); padding-bottom:calc(env(safe-area-inset-bottom,0px) + 48px);}
+.foot-inner{max-width:1180px; margin:0 auto;}
+footer h2{font-size:clamp(1.8rem,5vw,2.6rem);}
+.foot-links{display:flex; flex-wrap:wrap; gap:26px; margin-top:26px; font-size:.9rem;}
+.foot-links a{color:#fff; text-decoration:none; border-bottom:1px solid rgba(255,255,255,.35); padding-bottom:2px;}
+.foot-note{margin-top:40px; font-size:.75rem; color:rgba(255,255,255,.6); display:flex; justify-content:space-between; flex-wrap:wrap; gap:10px;}
+.folder-chip{display:inline-flex; align-items:center; gap:8px; background:rgba(255,255,255,.12); padding:8px 14px; border-radius:999px; font-size:.8rem; margin-top:22px;}
+</style>
+</head>
+<body>
+
+<div class="menubar" aria-hidden="true">
+  <span><i class="fa-brands fa-apple"></i> Adii</span>
+  <span>File</span><span>Edit</span><span>View</span><span>Go</span><span>Window</span><span>Help</span>
+  <span class="fill"></span>
+  <span><i class="fa-solid fa-wifi"></i></span><span><i class="fa-solid fa-magnifying-glass"></i></span><span id="clock"></span>
+</div>
+
+<section class="hero">
+  <h1 class="reveal">Halo, saya<br><span class="hl">Adii</span></h1>
+  <p class="lede reveal">Junior Developer, Automation Junior, dan Technician Junior yang suka merapikan sistem dan membuat kerja jadi otomatis.</p>
+  <div class="cta-row reveal">
+    <a href="#kontak" class="btn-primary">Hubungi Saya</a>
+    <a href="#skills" class="btn-secondary">Lihat Skill</a>
+  </div>
+
+  <div class="float f1 mac-card">
+    <div class="bar"><span class="dot r"></span><span class="dot y"></span><span class="dot g"></span></div>
+    <div class="body"><b><i class="fa-solid fa-bolt"></i> Workflow.n8n</b>Menjalankan 3 automation aktif</div>
+  </div>
+  <div class="float f2 mac-card">
+    <div class="bar"><span class="dot r"></span><span class="dot y"></span><span class="dot g"></span></div>
+    <div class="body"><b><i class="fa-solid fa-circle-check"></i> Status</b>Available for junior roles</div>
+  </div>
+  <div class="float f3 mac-card">
+    <div class="bar"><span class="dot r"></span><span class="dot y"></span><span class="dot g"></span></div>
+    <div class="body"><b><i class="fa-solid fa-toolbox"></i> Toolkit</b>HTML, CSS, JS, n8n</div>
+  </div>
+</section>
+
+<section id="skills">
+  <div class="eyebrow reveal">Kemampuan</div>
+  <h2 class="reveal">Tiga Peran, Satu Adii</h2>
+  <div class="skill-rows">
+    <div class="mac-card skill-row reveal">
+      <div class="bar"><span class="dot r"></span><span class="dot y"></span><span class="dot g"></span></div>
+      <div class="row-body">
+        <div class="row-icon"><i class="fa-solid fa-code"></i></div>
+        <div class="row-content">
+          <h3>Junior Developer</h3>
+          <ul>
+            <li>HTML / CSS / JavaScript</li>
+            <li>Git & version control</li>
+            <li>Responsive layout</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="mac-card skill-row rev reveal">
+      <div class="bar"><span class="dot r"></span><span class="dot y"></span><span class="dot g"></span></div>
+      <div class="row-body">
+        <div class="row-icon"><i class="fa-solid fa-gears"></i></div>
+        <div class="row-content">
+          <h3>Automation Junior</h3>
+          <ul>
+            <li>n8n workflow automation</li>
+            <li>API integration</li>
+            <li>Data pipeline dasar</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="mac-card skill-row reveal">
+      <div class="bar"><span class="dot r"></span><span class="dot y"></span><span class="dot g"></span></div>
+      <div class="row-body">
+        <div class="row-icon"><i class="fa-solid fa-screwdriver-wrench"></i></div>
+        <div class="row-content">
+          <h3>Technician Junior</h3>
+          <ul>
+            <li>Hardware troubleshooting</li>
+            <li>Jaringan & setup perangkat</li>
+            <li>Instalasi & maintenance</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="album">
+  <div class="eyebrow reveal">Album</div>
+  <h2 class="reveal">Sudut Kerja</h2>
+  <div class="mac-card album-wrap reveal">
+    <div class="bar"><span class="dot r"></span><span class="dot y"></span><span class="dot g"></span><span style="margin-left:8px;font-size:.75rem;color:var(--muted)"><i class="fa-regular fa-images"></i> Setup & Workspace</span></div>
+    <div class="album-main">
+      <div class="bento">
+        <figure class="b-big"><img src="https://picsum.photos/seed/adii-desk-1/700/700" alt="Meja kerja Adii" loading="lazy"><figcaption>Meja kerja utama</figcaption></figure>
+        <figure class="b-tall"><img src="https://picsum.photos/seed/adii-desk-2/400/700" alt="Perangkat teknisi" loading="lazy"><figcaption>Rak alat teknisi</figcaption></figure>
+        <figure><img src="https://picsum.photos/seed/adii-desk-3/400/400" alt="Sesi coding" loading="lazy"><figcaption>Sesi coding</figcaption></figure>
+        <figure><img src="https://picsum.photos/seed/adii-desk-5/400/400" alt="Laptop & monitor" loading="lazy"><figcaption>Laptop & monitor</figcaption></figure>
+        <figure class="b-stat"><i class="fa-solid fa-images"></i><b>6</b><span>Snapshots di album ini</span></figure>
+        <figure class="b-wide"><img src="https://picsum.photos/seed/adii-desk-6/700/400" alt="Automation dashboard" loading="lazy"><figcaption>Dashboard automation</figcaption></figure>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer id="kontak">
+  <div class="foot-inner">
+    <h2 class="reveal">Yuk Terhubung,<br>bareng Adii.</h2>
+    <div class="foot-links reveal">
+      <a href="mailto:adii@example.com"><i class="fa-solid fa-envelope"></i> adii@example.com</a>
+      <a href="#"><i class="fa-brands fa-linkedin"></i> LinkedIn</a>
+      <a href="#"><i class="fa-brands fa-github"></i> GitHub</a>
+      <a href="#"><i class="fa-brands fa-instagram"></i> Instagram</a>
+    </div>
+    <div class="folder-chip reveal"><i class="fa-solid fa-folder"></i> open-to-work.folder</div>
+    <div class="foot-note">
+      <span>© 2026 Adii. Semua hak dilindungi.</span>
+      <span>Dibuat dengan HTML, CSS & sedikit automation.</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+const clock=document.getElementById('clock');
+function tick(){clock.textContent=new Date().toLocaleTimeString('id-ID',{hour:'2-digit',minute:'2-digit'});}
+tick(); setInterval(tick,30000);
+
+const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in'); io.unobserve(e.target);}}),{threshold:.15});
+document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+</script>
+</body>
+</html>
